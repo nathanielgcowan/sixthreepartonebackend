@@ -7,7 +7,8 @@ class SkillsController < ApplicationController
 
     def create
         skill = Skill.new(skill_params)
-        if skill.new
+        
+        if skill.save
             render json: skill
         else
             render json: {errors: skill.errors.full_messages}
@@ -21,7 +22,7 @@ class SkillsController < ApplicationController
 
     private
 
-    def skil_params
+    def skill_params
         params.require(:skill).permit(:name, :creature_id)
     end
 end
