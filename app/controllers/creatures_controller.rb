@@ -6,7 +6,7 @@ class CreaturesController < ApplicationController
     end
 
     def create
-        creature = Creature.new
+        creature = Creature.new(creature_params)
         if creature.save
             render json: CreatureSerializer.new(creature)
         else
@@ -22,7 +22,7 @@ class CreaturesController < ApplicationController
     private
 
     def creature_params
-        params.require(:creature).permot(:name, :image, :description)
+        params.require(:creature).permit(:name, :image, :description)
     end
 
 end
